@@ -165,6 +165,9 @@ open class FolioReaderConfig: NSObject {
     /// Disables menu
     open var disableMenu = false
     
+    /// Status bar style
+    open var statusBarStyle: UIStatusBarStyle = .default
+    
     // MARK: Quote image share
 
     /// Custom Quote logo

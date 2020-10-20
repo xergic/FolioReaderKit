@@ -206,7 +206,7 @@ open class FolioReaderContainer: UIViewController {
     }
 
     override open var preferredStatusBarStyle: UIStatusBarStyle {
-        return self.folioReader.isNight(.lightContent, .default)
+        return self.readerConfig.statusBarStyle
     }
 }
 
