@@ -162,9 +162,6 @@ open class FolioReaderConfig: NSObject {
     /// Go to saved position when open a book
     open var loadSavedPositionForCurrentBook = true
     
-    /// Disables menu
-    open var disableMenu = false
-    
     /// Status bar style
     open var statusBarStyle: UIStatusBarStyle = .default
     
