@@ -156,7 +156,7 @@ extension FolioReader {
     /// - Parameters:
     ///   - parentViewController: View Controller that will present the reader container.
     ///   - epubPath: String representing the path on the disk of the ePub file. Must not be nil nor empty string.
-	///   - unzipPath: Path to unzip the compressed epub.
+    ///   - unzipPath: Path to unzip the compressed epub.
     ///   - config: FolioReader configuration.
     ///   - shouldRemoveEpub: Boolean to remove the epub or not. Default true.
     ///   - animated: Pass true to animate the presentation; otherwise, pass false.
@@ -164,7 +164,6 @@ extension FolioReader {
         Bool = true) {
         let readerContainer = FolioReaderContainer(withConfig: config, folioReader: self, epubPath: epubPath, unzipPath: unzipPath, removeEpub: shouldRemoveEpub)
         self.readerContainer = readerContainer
-        readerContainer.modalPresentationStyle = .fullScreen
         parentViewController.present(readerContainer, animated: animated, completion: nil)
         addObservers()
     }
@@ -186,7 +185,7 @@ extension FolioReader {
 
             if let readerCenter = self.readerCenter {
                 UIView.animate(withDuration: 0.6, animations: {
-                    _ = readerCenter.currentPage?.webView?.js("nightMode(\(self.nightMode))")
+                    _ = readerCenter.currentPage?.webView?.js("nightMode(\(self.nightMode))") { _ in }
                     readerCenter.pageIndicatorView?.reloadColors()
                     readerCenter.configureNavBar()
                     readerCenter.scrollScrubber?.reloadColors()
@@ -211,7 +210,7 @@ extension FolioReader {
         }
         set (font) {
             self.defaults.set(font.rawValue, forKey: kCurrentFontFamily)
-            _ = self.readerCenter?.currentPage?.webView?.js("setFontName('\(font.cssIdentifier)')")
+            _ = self.readerCenter?.currentPage?.webView?.js("setFontName('\(font.cssIdentifier)')") { _ in }
         }
     }
 
@@ -233,7 +232,7 @@ extension FolioReader {
                 return
             }
 
-            currentPage.webView?.js("setFontSize('\(currentFontSize.cssIdentifier)')")
+            currentPage.webView?.js("setFontSize('\(currentFontSize.cssIdentifier)')") { _ in }
         }
     }
 
