@@ -165,6 +165,9 @@ open class FolioReaderConfig: NSObject {
     /// Status bar style
     open var statusBarStyle: UIStatusBarStyle = .default
     
+    /// Presentation style
+    open var modalPresentationStyle: UIModalPresentationStyle = .fullScreen
+    
     // MARK: Quote image share
 
     /// Custom Quote logo
