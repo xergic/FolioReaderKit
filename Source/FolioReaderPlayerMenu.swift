@@ -89,7 +89,7 @@ class FolioReaderPlayerMenu: UIViewController, SMSegmentViewDelegate, UIGestureR
         playPauseBtn.setTitleColor(selectedColor, for: .selected)
         playPauseBtn.setImage(playSelected, for: UIControl.State())
         playPauseBtn.setImage(pauseSelected, for: .selected)
-        playPauseBtn.titleLabel!.font = UIFont(name: "Avenir", size: 22)!
+        playPauseBtn.titleLabel!.font = UIFont.systemFont(ofSize: 22)
         playPauseBtn.addTarget(self, action: #selector(FolioReaderPlayerMenu.togglePlay(_:)), for: .touchUpInside)
         menuView.addSubview(playPauseBtn)
 
@@ -127,7 +127,7 @@ class FolioReaderPlayerMenu: UIViewController, SMSegmentViewDelegate, UIGestureR
         playbackRate.addSegmentWithTitle("1x", onSelectionImage: nil, offSelectionImage: nil)
         playbackRate.addSegmentWithTitle("1½x", onSelectionImage: nil, offSelectionImage: nil)
         playbackRate.addSegmentWithTitle("2x", onSelectionImage: nil, offSelectionImage: nil)
-        playbackRate.segmentTitleFont = UIFont(name: "Avenir-Light", size: 17)!
+        playbackRate.segmentTitleFont = UIFont.systemFont(ofSize: 17)
         playbackRate.selectSegmentAtIndex(Int(self.folioReader.currentAudioRate))
         menuView.addSubview(playbackRate)
 
@@ -141,7 +141,7 @@ class FolioReaderPlayerMenu: UIViewController, SMSegmentViewDelegate, UIGestureR
         // Media overlay highlight styles
         let style0 = UIButton(frame: CGRect(x: 0, y: line2.frame.height+line2.frame.origin.y, width: view.frame.width/3, height: 55))
         style0.titleLabel!.textAlignment = .center
-        style0.titleLabel!.font = UIFont(name: "Avenir-Light", size: 17)
+        style0.titleLabel!.font = UIFont.systemFont(ofSize: 17)
         style0.setTitleColor(self.folioReader.isNight(self.readerConfig.nightModeMenuBackground, UIColor.white), for: UIControl.State())
         style0.setTitleColor(self.folioReader.isNight(self.readerConfig.nightModeMenuBackground, UIColor.white), for: .selected)
         style0.setTitle(self.readerConfig.localizedPlayerMenuStyle, for: UIControl.State())
@@ -158,7 +158,7 @@ class FolioReaderPlayerMenu: UIViewController, SMSegmentViewDelegate, UIGestureR
 
         let style1 = UIButton(frame: CGRect(x: view.frame.width/3, y: line2.frame.height+line2.frame.origin.y, width: view.frame.width/3, height: 55))
         style1.titleLabel!.textAlignment = .center
-        style1.titleLabel!.font = UIFont(name: "Avenir-Light", size: 17)
+        style1.titleLabel!.font = UIFont.systemFont(ofSize: 17)
         style1.setTitleColor(normalColor, for: UIControl.State())
         style1.setAttributedTitle(NSAttributedString(string: "Style", attributes: [
             NSAttributedString.Key.foregroundColor: normalColor,
@@ -174,7 +174,7 @@ class FolioReaderPlayerMenu: UIViewController, SMSegmentViewDelegate, UIGestureR
 
         let style2 = UIButton(frame: CGRect(x: view.frame.width/1.5, y: line2.frame.height+line2.frame.origin.y, width: view.frame.width/3, height: 55))
         style2.titleLabel!.textAlignment = .center
-        style2.titleLabel!.font = UIFont(name: "Avenir-Light", size: 17)
+        style2.titleLabel!.font = UIFont.systemFont(ofSize: 17)
         style2.setTitleColor(normalColor, for: UIControl.State())
         style2.setTitleColor(selectedColor, for: .selected)
         style2.setTitle(self.readerConfig.localizedPlayerMenuStyle, for: UIControl.State())

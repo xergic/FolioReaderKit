@@ -133,7 +133,7 @@ class FolioReaderAddHighlightNote: UIViewController {
         let navBackground = folioReader.isNight(self.readerConfig.nightModeNavBackground, self.readerConfig.daysModeNavBackground)
         let tintColor = readerConfig.tintColor
         let navText = folioReader.isNight(UIColor.white, UIColor.black)
-        let font = UIFont(name: "Avenir-Light", size: 17)!
+        let font = UIFont.systemFont(ofSize: 17)
         setTranslucentNavigation(false, color: navBackground, tintColor: tintColor, titleColor: navText, andFont: font)
         
         let titleAttrs = [NSAttributedString.Key.foregroundColor: readerConfig.tintColor]

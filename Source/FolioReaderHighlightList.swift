@@ -68,7 +68,7 @@ class FolioReaderHighlightList: UITableViewController {
             dateLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width-40, height: 16))
             dateLabel.tag = 456
             dateLabel.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
-            dateLabel.font = UIFont(name: "Avenir-Medium", size: 12)
+            dateLabel.font = UIFont.systemFont(ofSize: 12)
             cell.contentView.addSubview(dateLabel)
         } else {
             dateLabel = cell.contentView.viewWithTag(456) as? UILabel
@@ -87,7 +87,7 @@ class FolioReaderHighlightList: UITableViewController {
         let textColor = self.folioReader.isNight(self.readerConfig.menuTextColor, UIColor.black)
 
         text.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraph, range: range)
-        text.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Light", size: 16)!, range: range)
+        text.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 16), range: range)
         text.addAttribute(NSAttributedString.Key.foregroundColor, value: textColor, range: range)
 
         if (highlight.type == HighlightStyle.underline.rawValue) {
@@ -152,7 +152,7 @@ class FolioReaderHighlightList: UITableViewController {
         let paragraph = NSMutableParagraphStyle()
         paragraph.lineSpacing = 3
         text.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraph, range: range)
-        text.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Avenir-Light", size: 16)!, range: range)
+        text.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 16), range: range)
 
         let s = text.boundingRect(with: CGSize(width: view.frame.width-40, height: CGFloat.greatestFiniteMagnitude),
                                   options: [NSStringDrawingOptions.usesLineFragmentOrigin, NSStringDrawingOptions.usesFontLeading],
