@@ -1296,7 +1296,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         // Perform the page after a short delay as the collection view hasn't completed it's transition if this method is called (the index paths aren't right during fast scrolls).
         delay(0.2, closure: { [weak self] in
             if (self?.readerConfig.scrollDirection == .horizontalWithVerticalContent),
-                let cell = ((scrollView.superview as? UIWebView)?.delegate as? FolioReaderPage) {
+                let cell = ((scrollView.superview as? WKWebView)?.delegate as? FolioReaderPage) {
                 let currentIndexPathRow = cell.pageNumber - 1
                 self?.currentWebViewScrollPositions[currentIndexPathRow] = scrollView.contentOffset
             }
@@ -1371,7 +1371,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         animator = ZFModalTransitionAnimator(modalViewController: menu)
         animator.isDragable = false
         animator.bounces = false
-        animator.behindViewAlpha = 0.4
+        animator.behindViewAlpha = 1
         animator.behindViewScale = 1
         animator.transitionDuration = 0.6
         animator.direction = ZFModalTransitonDirection.bottom
@@ -1393,7 +1393,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         animator = ZFModalTransitionAnimator(modalViewController: menu)
         animator.isDragable = true
         animator.bounces = false
-        animator.behindViewAlpha = 0.4
+        animator.behindViewAlpha = 1
         animator.behindViewScale = 1
         animator.transitionDuration = 0.6
         animator.direction = ZFModalTransitonDirection.bottom
