@@ -129,6 +129,12 @@ open class FolioReaderConfig: NSObject {
 
     /// Media overlay or TTS selection color
     open lazy var mediaOverlayColor: UIColor! = self.tintColor
+    
+    // MARK: Images
+    
+    open var closeIcon: UIImage = UIImage(readerImageNamed: "icon-navbar-close")!
+    
+    open var tocIcon: UIImage = UIImage(readerImageNamed: "icon-navbar-toc")!
 
     // MARK: Custom actions
 
@@ -167,6 +173,8 @@ open class FolioReaderConfig: NSObject {
     
     /// Presentation style
     open var modalPresentationStyle: UIModalPresentationStyle = .fullScreen
+    
+    open var centerFontIcon = false
     
     // MARK: Quote image share
 
