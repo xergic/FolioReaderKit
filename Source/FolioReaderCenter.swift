@@ -1370,6 +1370,8 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
             nav.modalPresentationStyle = .popover
             let popover = nav.popoverPresentationController
             popover?.barButtonItem = sender
+        } else {
+            nav.modalPresentationStyle = .fullScreen
         }
         present(nav, animated: true, completion: nil)
     }

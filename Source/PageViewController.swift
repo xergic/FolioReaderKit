@@ -38,35 +38,45 @@ class PageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        segmentedControl = UISegmentedControl(items: segmentedControlItems)
-        segmentedControl.addTarget(self, action: #selector(PageViewController.didSwitchMenu(_:)), for: UIControl.Event.valueChanged)
-        segmentedControl.selectedSegmentIndex = index
-        segmentedControl.setWidth(100, forSegmentAt: 0)
-        segmentedControl.setWidth(100, forSegmentAt: 1)
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
-        self.navigationItem.titleView = segmentedControl
+        if self.readerConfig.tocSegmentedControlVisible {
+            segmentedControl = UISegmentedControl(items: segmentedControlItems)
+            segmentedControl.addTarget(self, action: #selector(PageViewController.didSwitchMenu(_:)), for: UIControl.Event.valueChanged)
+            segmentedControl.selectedSegmentIndex = index
+            segmentedControl.setWidth(100, forSegmentAt: 0)
+            segmentedControl.setWidth(100, forSegmentAt: 1)
+            segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+            segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
+            self.navigationItem.titleView = segmentedControl
+            
+            viewList = [viewControllerOne, viewControllerTwo]
 
-        viewList = [viewControllerOne, viewControllerTwo]
+            viewControllerOne.didMove(toParent: self)
+            viewControllerTwo.didMove(toParent: self)
 
-        viewControllerOne.didMove(toParent: self)
-        viewControllerTwo.didMove(toParent: self)
+            self.delegate = self
+            self.dataSource = self
 
-        self.delegate = self
-        self.dataSource = self
+            self.view.backgroundColor = UIColor.white
+            self.setViewControllers([viewList[index]], direction: .forward, animated: false, completion: nil)
 
-        self.view.backgroundColor = UIColor.white
-        self.setViewControllers([viewList[index]], direction: .forward, animated: false, completion: nil)
-
-        // FIXME: This disable scroll because of highlight swipe to delete, if you can fix this would be awesome
-        for view in self.view.subviews {
-            if view is UIScrollView {
-                let scroll = view as! UIScrollView
-                scroll.bounces = false
+            // FIXME: This disable scroll because of highlight swipe to delete, if you can fix this would be awesome
+            for view in self.view.subviews {
+                if view is UIScrollView {
+                    let scroll = view as! UIScrollView
+                    scroll.bounces = false
+                }
             }
+        } else {
+            self.view.backgroundColor = UIColor.white
+            self.setViewControllers([viewControllerOne], direction: .forward, animated: false, completion: nil)
+            self.navigationItem.title = segmentedControlItems.first
+            self.navigationController?.navigationBar.barStyle = .black
         }
 
-        self.setCloseButton(withConfiguration: self.readerConfig)
+        // Hide close button on iPad popover
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            self.setCloseButton(withConfiguration: self.readerConfig)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -77,7 +87,7 @@ class PageViewController: UIPageViewController {
     func configureNavBar() {
         let navBackground = self.folioReader.isNight(self.readerConfig.nightModeMenuBackground,self.readerConfig.daysModeNavBackground)
         let tintColor = self.readerConfig.tintColor
-        let navText = self.folioReader.isNight(UIColor.white, UIColor.black)
+        let navText = UIColor.white
         let font = UIFont.systemFont(ofSize: 17)
         setTranslucentNavigation(false, color: navBackground, tintColor: tintColor, titleColor: navText, andFont: font)
     }
@@ -94,7 +104,7 @@ class PageViewController: UIPageViewController {
     // MARK: - Status Bar
 
     override var preferredStatusBarStyle : UIStatusBarStyle {
-        return self.folioReader.isNight(.lightContent, .default)
+        return self.readerConfig.statusBarStyle
     }
 }
 

@@ -176,6 +176,8 @@ open class FolioReaderConfig: NSObject {
     
     open var centerFontIcon = false
     
+    open var tocSegmentedControlVisible = true
+    
     // MARK: Quote image share
 
     /// Custom Quote logo
