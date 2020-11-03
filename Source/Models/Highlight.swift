@@ -22,9 +22,3 @@ open class Highlight {
     var endOffset: Int = -1
     var noteForHighlight: String?
 }
-
-extension Results {
-    func toArray<T>(_ ofType: T.Type) -> [T] {
-        return compactMap { $0 as? T }
-    }
-}
