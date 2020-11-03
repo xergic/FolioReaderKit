@@ -1370,6 +1370,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
             nav.modalPresentationStyle = .popover
             let popover = nav.popoverPresentationController
             popover?.barButtonItem = sender
+            popover?.backgroundColor = readerConfig.daysModeNavBackground
         } else {
             nav.modalPresentationStyle = .fullScreen
         }
